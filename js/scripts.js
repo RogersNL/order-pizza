@@ -5,23 +5,23 @@ function Pizza (name, toppings, size) {
   this.size = size;
 }
 //Toppings
-var pepperoni = {name: "pepperoni", price: 0.50};
-var mushroom = {name: "mushroom", price: 0.75};
-var onion = {name: "onion", price: 0.25};
-var sausage = {name: "sausage", price: 1.00};
-var bacon = {name: "bacon", price: 1.50};
-var pineapple = {name: "pineapple", price: 0.60};
-var olive = {name: "olive", price: .50};
-var extraCheese = {name: "extraCheese", price: 1.00};
+var pepperoni = {name: "Pepperoni", price: 0.50};
+var mushroom = {name: "Mushroom", price: 0.75};
+var onion = {name: "Onion", price: 0.25};
+var sausage = {name: "Sausage", price: 1.00};
+var bacon = {name: "Bacon", price: 1.50};
+var pineapple = {name: "Pineapple", price: 0.60};
+var olive = {name: "Olive", price: .50};
+var extraCheese = {name: "Extra Cheese", price: 1.00};
 
 var toppingsArray = [pepperoni, mushroom, onion, sausage, bacon, pineapple, olive, extraCheese];
 var selectedToppings = [];
 //Sizes
-var personal = {name: "personal", price: 5.00, diameter: 8}
-var small = {name: "small", price: 6.00, diameter: 10};
-var medium = {name: "medium", price: 7.00, diameter: 12};
-var large = {name: "large", price: 9.00, diameter: 14};
-var extraLarge = {name: "extraLarge", price: 11.00, diameter: 16};
+var personal = {name: "Personal", price: 5.00, diameter: 8}
+var small = {name: "Small", price: 6.00, diameter: 10};
+var medium = {name: "Medium", price: 7.00, diameter: 12};
+var large = {name: "Large", price: 9.00, diameter: 14};
+var extraLarge = {name: "Extra large", price: 11.00, diameter: 16};
 
 var sizesArray = [personal, small, medium, large, extraLarge];
 
@@ -42,18 +42,86 @@ Pizza.prototype.cost  = function(){
   return (toppingsTotal + parseFloat(this.size.price)).toFixed(2);
 }
 
-//Form Submit
+
 $(document).ready(function(){
+  //Hide-show
+  $("#home-page").click(function(){
+    $(".home").fadeIn();
+    $(".order").hide();
+    $(".about-us").hide();
+    $(".order-summary").hide();
+  });
+  $("#order-page").click(function(){
+    $(".home").hide();
+    $(".order").fadeIn();
+    $(".about-us").hide();
+    $(".order-summary").hide();
+  });
+  $("#about-page").click(function(){
+    $(".home").hide();
+    $(".order").hide();
+    $(".about-us").fadeIn();
+    $(".order-summary").hide();
+  });
+  $(".pickup-click").click(function(){
+    $(".address-entry").hide();
+  });
+  $(".deliver-click").click(function(){
+    $(".address-entry").fadeIn();
+  })
+  //Form Submit
   $("#pizza-order-form").submit(function(event){
     event.preventDefault();
-    var inputtedName = $("input#name").val();
-    var inputtedSize = parseInt($("select#size").val());
-    var pizzaSize = sizesArray[inputtedSize];
-    selectedToppings = [];
-    toppingsToArray(toppingsArray);
-    var newPizza = new Pizza (inputtedName, selectedToppings, pizzaSize);
-    console.log(newPizza);
-    // alert("pizza costs " + newPizza.cost());
+    //Name Check
+    var userName = $("input#User-Name").val();
+    var userNameAgain = $("input#User-Name-Again").val();
+    if (userName === "" && userNameAgain === "") {
+      $(".no-error").hide();
+      $(".has-error").show();
+    } else {
+      //Calculate total
+      var inputtedSize = parseInt($("select#size").val());
+      var pizzaSize = sizesArray[inputtedSize];
+      selectedToppings = [];
+      toppingsToArray(toppingsArray);
+      var newPizza = new Pizza (userName, selectedToppings, pizzaSize);
+      console.log(newPizza);
 
+      //Fill order summary
+
+      $("#name-order").text(userName + userNameAgain);
+      $("#size-pizza").text(newPizza.size.name);
+      $("#diameter-pizza").text(newPizza.size.diameter);
+      $("#toppings-ordered").empty();
+      if (newPizza.toppings[0]) {
+        for (j = 0; j < newPizza.toppings.length; j++) {
+          $("#toppings-ordered").append("<li>" + newPizza.toppings[j].name + "</li>");
+        }
+      } else {
+          $("#toppings-ordered").append("<li>No additional toppings</li>");
+      }
+      $("#total-cost").text("$" + newPizza.cost());
+      var pickupOrDeliver = $("input:radio[name=pickup-deliver]:checked").val();
+      if(pickupOrDeliver === "pickup") {
+        $(".deliver-message").hide();
+        $(".pickup-message").show();
+      } else {
+        //Fill out address
+        var street = $("input#addressStreet").val();
+        var city = $("input#addressCity").val();
+        var state = $("select#addressState").val();
+        var zipCode = $("input#addressZip").val();
+        $("#address-street").text(street);
+        $("#address-city").text(city);
+        $("#address-state").text(state);
+        $("#address-zip").text(zipCode);
+        $(".pickup-message").hide();
+        $(".deliver-message").show();
+      }
+      //Show order summary
+      $(".order").hide();
+      $(".order-summary").fadeIn();
+      document.getElementById("pizza-order-form").reset();
+    }
   });
 });

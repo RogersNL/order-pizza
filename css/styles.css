@@ -1,15 +1,16 @@
 .jumbotron {
   text-align: center;
   background-color: #7030A0;
-  font-family: 'Nunito', sans-serif;
   color: white;
 }
 .buttons-menu .btn {
-  margin-top: 3px;
+  margin-top: 4px;
+  width: 200px;
+  font-size: 20px;
 }
 
-.form-control {
-  width: 200px;
+.medium-wide {
+  width: 300px;
 }
 #size {
   margin-bottom:15px;
@@ -28,6 +29,7 @@ body {
   background-image: url("../img/background.jpg");
   background-repeat:no-repeat;
   background-size: cover;
+  font-family: 'Nunito', sans-serif;
 }
 #logo {
   float: left;
@@ -57,4 +59,13 @@ form {
 }
 .about-text {
   font-size: 19px;
+}
+.initial-hidden {
+  display:none;
+}
+.has-error {
+  display:none;
+}
+#error-message {
+  color:#A94442;
 }
