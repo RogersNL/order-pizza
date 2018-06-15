@@ -3,39 +3,86 @@
   <head>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/scripts.js"></script>
     <title>Order Pizza</title>
   </head>
   <body>
     <div class="container">
-      <h1>Order Pizza</h1>
-      <form id="pizza-order-form">
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input id="name" class="form-control" type="text">
+      <div class="jumbotron">
+        <img id="logo" src="img/logo.png" alt="logo">
+        <img id="pizza" src="img/pizza.png" alt="pizza">
+        <h1>Waluigi's Pizzaria</h1>
+        <p>It's WAH-some!</p><br>
+        <div class="buttons-menu">
+          <button type="button" class="btn btn-warning">Home</button><br>
+          <button type="button" class="btn btn-warning">Order Now</button><br>
+          <button type="button" class="btn btn-warning">About Us</button>
         </div>
-        <label for="size">Size:</label>
-        <select class="form-control" id="size">
-          <option value="0">Personal</option>
-          <option value="1">Small</option>
-          <option value="2">Medium</option>
-          <option value="3">Large</option>
-          <option value="4">Extra Large</option>
-        </select>
-        <label for="toppings">Choose Toppings:</label>
-        <div class="form-group" id="toppings">
-          <input type="checkbox" name="toppings" value="0">Pepperoni<br>
-          <input type="checkbox" name="toppings" value="1">Mushroom<br>
-          <input type="checkbox" name="toppings" value="2">Onion<br>
-          <input type="checkbox" name="toppings" value="3">Sausage<br>
-          <input type="checkbox" name="toppings" value="4">Bacon<br>
-          <input type="checkbox" name="toppings" value="5">Pineapple<br>
-          <input type="checkbox" name="toppings" value="6">Olive<br>
-          <input type="checkbox" name="toppings" value="7">Extra Cheese<br>
+      </div>
+      <!-- HOME -->
+      <div class="home panel panel-warning">
+        <div class="panel-heading">
+          <h2>Welcome to Waluigi's Pizzaria!</h2>
         </div>
-        <button type="submit" class="btn btn-primary">Order!</button>
-      </form>
+        <div class="panel-body">
+          <img id="waluigi-img" src="img/waluigi.png" alt="waluigi">
+          <blockquote>
+            <p>The food here is quite underrated and forgotten.  Much like its owner...</p>
+            <footer>Food connoisseur <cite title="Source Title">Mushroom Kingdom Weekly</cite></footer>
+          </blockquote>
+          <blockquote>
+            <p>Hey, it's not bad.  I mean, every once in a while I have to take a break from kidnapping.</p>
+            <footer>Bowser <cite title="Source Title">Koopa King</cite></footer>
+          </blockquote>
+          <blockquote>
+            <p>Always nice to come here after a long days work.  Bad luck on the job, brother.  You'll make it someday.</p>
+            <footer>Wario <cite title="Source Title">Slightly more popular brother</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+
+      <!-- ORDER -->
+      <div class="order panel panel-warning">
+        <h2 class="panel-heading">Customize Your Pizza! Wahahaha!</h2>
+        <img class="panel-body" id="waluigi1-img" src="img/waluigi1.png" alt="waluigi img 1">
+        <form id="pizza-order-form" class="panel-body">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input id="name" class="form-control input-lg" type="text">
+          </div>
+          <label for="size">Size:</label>
+          <select class="form-control input-lg" id="size">
+            <option value="0">Personal</option>
+            <option value="1">Small</option>
+            <option value="2">Medium</option>
+            <option value="3">Large</option>
+            <option value="4">Extra Large</option>
+          </select>
+          <label for="toppings" id="toppings">Choose Toppings:</label>
+          <div class="form-group checkboxes" id="toppings">
+            <input type="checkbox" name="toppings" value="0"> Pepperoni<br>
+            <input type="checkbox" name="toppings" value="1"> Mushroom<br>
+            <input type="checkbox" name="toppings" value="2"> Onion<br>
+            <input type="checkbox" name="toppings" value="3"> Sausage<br>
+            <input type="checkbox" name="toppings" value="4"> Bacon<br>
+            <input type="checkbox" name="toppings" value="5"> Pineapple<br>
+            <input type="checkbox" name="toppings" value="6"> Olive<br>
+            <input type="checkbox" name="toppings" value="7"> Extra Cheese<br>
+          </div>
+          <button type="submit" class="btn btn-primary">Order!</button>
+        </form>
+      </div>
+      <div class="about-us panel panel-warning">
+        <h2 class="panel-heading">Our Story</h2>
+        <img class="panel-body" id="waluigi-tennis-img" src="img/waluigi-tennis.png" alt="waluigi tennis">
+        <div class="panel-body">
+          <p class="about-text">Wah! With the end of E3, the news is out.  "Everyone Is Here" they say but Waluigi is left with a part time position in Super Smash Bros. Ultimate as an event trophy. How am I not considered in the "Bros."?? Even lizard guy Ridley got a full time job.</p>
+          <p class="about-text">Waluigi got his start in tennis.  My long legs and superior skills landed me popularity back in good old 2000. Other than switching between first and third person in my speech, Waluigi frequently spends time with brother Wario riding motorcycles.</p>
+          <p class="about-text">Well anyways, a man's got to support himself in this day and age.  Come in and say hi or order here on our site! Wahahaha!</p>
+      </div>
+      </div>
     </div>
   </body>
 </html
