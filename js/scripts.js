@@ -15,12 +15,13 @@ var olive = {name: "olive", price: .50};
 var extraCheese = {name: "extraCheese", price: 1.00};
 
 //Sizes
-var small = {name: "small", price: 5.00};
-var medium = {name: "medium", price: 7.00};
-var large = {name: "large", price: 9.00};
-var extraLarge = {name: "extraLarge", price: 11.00};
+var personal = {name: "personal", price: 5.00, diameter: 8}
+var small = {name: "small", price: 6.00, diameter: 10};
+var medium = {name: "medium", price: 7.00, diameter: 12};
+var large = {name: "large", price: 9.00, diameter: 14};
+var extraLarge = {name: "extraLarge", price: 11.00, diameter: 16};
 
 //Prototype Method for Cost
 Pizza.prototype.cost  = function(){
-
+  return size.price + toppings.price;
 }
