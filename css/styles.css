@@ -39,8 +39,9 @@ body {
   float: right;
   width: 180px;
 }
-#waluigi-img {
+#waluigi-img, #waluigi2-img{
   float: right;
+  margin-right:30px;
 }
 #waluigi1-img {
   float: right;
@@ -68,4 +69,11 @@ form {
 }
 #error-message {
   color:#A94442;
+}
+.order-summary p, li {
+  font-size:19px;
+}
+.no-address {
+  color:#A94442;
+  font-size: 17px;
 }

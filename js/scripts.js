@@ -42,7 +42,14 @@ Pizza.prototype.cost  = function(){
   return (toppingsTotal + parseFloat(this.size.price)).toFixed(2);
 }
 
-
+//Functions
+function resetForm() {
+  $(".address-entry").hide();
+  $(".no-address").hide();
+  $(".has-error").hide();
+  $(".no-error").show();
+  document.getElementById("pizza-order-form").reset();
+}
 $(document).ready(function(){
   //Hide-show
   $("#home-page").click(function(){
@@ -85,7 +92,6 @@ $(document).ready(function(){
       selectedToppings = [];
       toppingsToArray(toppingsArray);
       var newPizza = new Pizza (userName, selectedToppings, pizzaSize);
-      console.log(newPizza);
 
       //Fill order summary
 
@@ -105,23 +111,31 @@ $(document).ready(function(){
       if(pickupOrDeliver === "pickup") {
         $(".deliver-message").hide();
         $(".pickup-message").show();
+        //Show order summary
+        $(".order").hide();
+        $(".order-summary").fadeIn();
+        resetForm();
       } else {
         //Fill out address
         var street = $("input#addressStreet").val();
         var city = $("input#addressCity").val();
         var state = $("select#addressState").val();
         var zipCode = $("input#addressZip").val();
-        $("#address-street").text(street);
-        $("#address-city").text(city);
-        $("#address-state").text(state);
-        $("#address-zip").text(zipCode);
-        $(".pickup-message").hide();
-        $(".deliver-message").show();
+        if (street === "" || city === "" || zipCode === "") {
+          $(".no-address").fadeIn();
+        } else {
+          $("#address-street").text(street);
+          $("#address-city").text(city);
+          $("#address-state").text(state);
+          $("#address-zip").text(zipCode);
+          $(".pickup-message").hide();
+          $(".deliver-message").show();
+          //Show order summary
+          $(".order").hide();
+          $(".order-summary").fadeIn();
+          resetForm();
+        }
       }
-      //Show order summary
-      $(".order").hide();
-      $(".order-summary").fadeIn();
-      document.getElementById("pizza-order-form").reset();
     }
   });
 });
